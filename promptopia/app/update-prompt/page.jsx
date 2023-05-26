@@ -1,11 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useRouter, useSearchParams, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Form from "@components/Form";
 
 const EditPrompt = () => {
 	const router = useRouter();
-	// const { data: session } = useSession();
 	const searchParams = useSearchParams();
 	const promptId = searchParams.get("id");
 	const [submitting, setSubmitting] = useState(false);
@@ -24,19 +23,22 @@ const EditPrompt = () => {
 				tag: data.tag,
 			});
 		};
+
+		if (promptId) getPromptDetails();
 	}, [promptId]);
 
-	const createPrompt = async (e) => {
+	const updatePrompt = async (e) => {
 		// here, preventDefault is keeping the browser from doing the default thing when submitting a form -- reloading the entire page.
 		e.preventDefault();
 		setSubmitting(true);
 
+		if (!promptId) return alert("Prompt ID not found");
+
 		try {
-			const response = await fetch("/api/prompt/new", {
-				method: "POST",
+			const response = await fetch(`/api/prompt/${promptId}`, {
+				method: "PATCH",
 				body: JSON.stringify({
 					prompt: post.prompt,
-					userId: session?.user.id,
 					tag: post.tag,
 				}),
 			});
@@ -51,11 +53,11 @@ const EditPrompt = () => {
 	};
 	return (
 		<Form
-			type="Create"
+			type="Edit"
 			post={post}
 			setPost={setPost}
 			submitting={submitting}
-			handleSubmit={createPrompt}
+			handleSubmit={updatePrompt}
 		/>
 	);
 };

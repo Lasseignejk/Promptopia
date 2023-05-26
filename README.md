@@ -18,17 +18,18 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Next steps
 
-To learn more about Next.js, take a look at the following resources:
+[] Implement search - search by prompt - search by tag - search by username
+[] Implement click on tag - click on a tag, populate that tag inside the search field
+[] Implement view other profiles - click on a username, redirect to that person's username with all of their posts listed
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For the first two, we'll need to put code in the feed. query and filter.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+const [searchText, setSerachText] = useState("")
+const [searchTimeout, setSearchTimeout] = useState(null)
+const [searchedResults, setSearchedResults] = useState([])
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The third one you'll have to make a new folder under the profile with [id]

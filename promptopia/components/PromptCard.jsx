@@ -46,6 +46,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 						}
 						width={12}
 						height={12}
+						alt="Copy Button"
 					/>
 				</div>
 			</div>
@@ -55,7 +56,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 			<p
 				className="font-inter text-sm blue_gradient cursor-pointer"
 				onClick={() => handleTagClick && handleTagClick(post.tag)}>
-				{post.tag}
+				#{post.tag}
 			</p>
 			{/* check if the currently logged in user is the creator of that
 			post, and if the current path name is /profile, then render this div */}
